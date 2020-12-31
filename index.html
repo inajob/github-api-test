@@ -4,28 +4,23 @@
     <meta charset="utf-8" />
     <title>Test</title>
     <script>
-      /**
-       * Configuration goes here
-       */
-      // Format: https://api.github.com/repos/{owner}/{repo}/issues/
-      var GITHUB_ISSUES_LINK =
-        "https://api.github.com/repos/inajob/github-api-test/issues/";
+      var GITHUB_ISSUES_LINK = "https://api.github.com/repos/inajob/github-api-test/issues/";
+      var issueNumber = 1;
 
       function run() {
         var xhr = new XMLHttpRequest();
-        var issueNumber = 1;
 
         xhr.onload = function () {
           try {
             var payload = JSON.parse(xhr.response);
-            var message = payload.message;
+            var body = payload.body;
             var title = payload.title;
 
             // Workaround IE 11 lack of support for new URL()
             var url = document.createElement("a");
             url.setAttribute("href", title);
 
-            console.log(payload, title, message);
+            console.log(payload, title, body);
           } catch (e) {
             location.replace(homepage);
           }
@@ -34,7 +29,7 @@
         xhr.onerror = function () {
           location.replace(homepage);
         };
-        xhr.open("GET", GITHUB_ISSUES_LINK + issueNumber);
+        xhr.open("GET", GITHUB_ISSUES_LINK;
         xhr.send();
       }
 
