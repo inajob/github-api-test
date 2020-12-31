@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Test</title>
-    <script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
+    <!--<script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>-->
     <script>
       var GITHUB_ISSUES_LINK = "https://api.github.com/repos/inajob/github-api-test/issues";
       var issueNumber = 1;
@@ -29,7 +29,9 @@
               elm.dataset["iframelyUrl"] = "1";
               document.body.appendChild(elm);
             });
-            iframely.load();
+            var script = document.createElement('script');
+            script.src = '//cdn.iframe.ly/embed.js';
+            document.body.appendChild(script);
           } catch (e) {
             console.log(e);
           }
