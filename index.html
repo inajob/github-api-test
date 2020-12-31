@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <title>Test</title>
-    <!--<script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>-->
     <script>
       var GITHUB_ISSUES_LINK = "https://api.github.com/repos/inajob/github-api-test/issues";
       var issueNumber = 1;
@@ -21,18 +20,13 @@
             var url = document.createElement("a");
             url.setAttribute("href", title);
 
-            console.log(payload, title, body);
             payload.forEach((issue) => {
-              console.log(issue.title, issue.body);
-              var elm = document.createElement("a");
-              elm.href = issue.title;
-              elm.dataset.iframelyUrl = "1";
-              elm.innerHTML = "test";
+              console.log(issue, issue.title, issue.body);
+              var elm = document.createElement("iframe");
+              elm.src="https://hatenablog-parts.com/embed?url=" + encodeURIComponent(issue.title);
               document.body.appendChild(elm);
             });
-            var script = document.createElement('script');
-            script.src = '//cdn.iframe.ly/embed.js';
-            //document.body.appendChild(script);
+            iframely.load();
           } catch (e) {
             console.log(e);
           }
@@ -45,7 +39,6 @@
         xhr.send();
       }
 
-      window.addEventListener('load', run);
     </script>
   </head>
   <body>test</body>
