@@ -27,6 +27,7 @@
               var elm = document.createElement("a");
               elm.href = issue.title;
               elm.dataset["iframelyUrl"] = "1";
+              elm.innerHTML = "test";
               document.body.appendChild(elm);
             });
             var script = document.createElement('script');
