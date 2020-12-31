@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Test</title>
+    <script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
     <script>
       var GITHUB_ISSUES_LINK = "https://api.github.com/repos/inajob/github-api-test/issues";
       var issueNumber = 1;
@@ -21,6 +22,13 @@
             url.setAttribute("href", title);
 
             console.log(payload, title, body);
+            payload.forEach((issue) => {
+              console.log(title, body);
+              var elm = document.contentElement("a");
+              elm.href = title;
+              elm.dataset["iframely-url"] = "1";
+            });
+            iframely.load();
           } catch (e) {
             location.replace(homepage);
           }
