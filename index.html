@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>Test</title>
+<style>
+iframe{
+  width: 100%;
+}
+</style>
     <script>
       var GITHUB_ISSUES_LINK = "https://api.github.com/repos/inajob/github-api-test/issues";
       var issueNumber = 1;
@@ -13,8 +18,7 @@
         xhr.onload = function () {
           try {
             var payload = JSON.parse(xhr.response);
-            var body = payload.body;
-            var title = payload.title;
+            payload.reverse();
 
             payload.forEach((issue) => {
               console.log(issue, issue.title, issue.body);
