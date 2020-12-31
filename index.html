@@ -16,10 +16,6 @@
             var body = payload.body;
             var title = payload.title;
 
-            // Workaround IE 11 lack of support for new URL()
-            var url = document.createElement("a");
-            url.setAttribute("href", title);
-
             payload.forEach((issue) => {
               console.log(issue, issue.title, issue.body);
               var elm = document.createElement("iframe");
