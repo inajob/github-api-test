@@ -24,7 +24,7 @@
             console.log(payload, title, body);
             payload.forEach((issue) => {
               console.log(title, body);
-              var elm = document.contentElement("a");
+              var elm = document.createElement("a");
               elm.href = title;
               elm.dataset["iframely-url"] = "1";
             });
