@@ -39,7 +39,7 @@ var jsonp = (name, src, f) => {
               var elm = document.createElement("iframe");
               elm.src="https://hatenablog-parts.com/embed?url=" + encodeURIComponent(issue.title);
               document.body.appendChild(elm);
-              var name = "hb-cb-" + i;
+              var name = "hb_cb_" + i;
               jsonp(name, "https://b.hatena.ne.jp/entry/jsonlite/?url=" + encodeURIComponent(issue.title) + "&callback=" + name, (o) => {
                 console.log("hb-cb",o);
               });
