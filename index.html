@@ -9,8 +9,22 @@ iframe{
 }
 </style>
     <script>
+var jsonp = (name, src, f) => {
+  window[name] = function(data){
+    f(data);
+  }
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.async = true;
+  script.src = src;
+  document.body.appendChild(script);
+}
+
       var GITHUB_ISSUES_LINK = "https://api.github.com/repos/inajob/github-api-test/issues";
       var issueNumber = 1;
+
+      function getBookmark() {
+      }
 
       function run() {
         var xhr = new XMLHttpRequest();
@@ -20,11 +34,14 @@ iframe{
             var payload = JSON.parse(xhr.response);
             payload.reverse();
 
-            payload.forEach((issue) => {
+            payload.forEach((issue, i) => {
               console.log(issue, issue.title, issue.body);
               var elm = document.createElement("iframe");
               elm.src="https://hatenablog-parts.com/embed?url=" + encodeURIComponent(issue.title);
               document.body.appendChild(elm);
+              jsonp("hb-cb-" + i, "https://b.hatena.ne.jp/entry/jsonlite/?url=" + encodeURIComponent(issue.title), (o) => {
+                console.log("hb-cb",o);
+              });
             });
           } catch (e) {
             console.log(e);
