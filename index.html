@@ -36,12 +36,22 @@ var jsonp = (name, src, f) => {
 
             payload.forEach((issue, i) => {
               console.log(issue, issue.title, issue.body);
-              var elm = document.createElement("iframe");
-              elm.src="https://hatenablog-parts.com/embed?url=" + encodeURIComponent(issue.title);
-              document.body.appendChild(elm);
               var name = "hb_cb_" + i;
               jsonp(name, "https://b.hatena.ne.jp/entry/jsonlite/?url=" + encodeURIComponent(issue.title) + "&callback=" + name, (o) => {
                 console.log("hb-cb",o);
+                var outer = document.createElement("div");
+                var elm = document.createElement("iframe");
+                elm.src="https://hatenablog-parts.com/embed?url=" + encodeURIComponent(issue.title);
+                outer.appendChild(elm);
+
+                o.bookmarks.forEach((b) => {
+                  //
+                  var elm = document.createElement("div");
+                  elm.innerHTML = b.user + ": " + b.comment;
+                  outer.appendChild(elm);
+                });
+                document.body.appendChild(outer);
+
               });
             });
           } catch (e) {
